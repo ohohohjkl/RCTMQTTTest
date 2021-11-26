@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		5E555C0D2413F4C50049A1A2 /* AwesomeTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* AwesomeTesting.m */; };
-
+		BECD23AD274FA53E00FFB6DF /* MQTTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BECD23AC274FA53E00FFB6DF /* MQTTClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,10 +24,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libAwesomeTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAwesomeTesting.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		B3E7B5881CC2AC0600A0062D /* AwesomeTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeTesting.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* AwesomeTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeTesting.m; sourceTree = "<group>"; };
-
+		BECD23AB274FA53E00FFB6DF /* MQTTClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQTTClient.h; sourceTree = "<group>"; };
+		BECD23AC274FA53E00FFB6DF /* MQTTClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQTTClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +52,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
+				BECD23AB274FA53E00FFB6DF /* MQTTClient.h */,
+				BECD23AC274FA53E00FFB6DF /* MQTTClient.m */,
 				B3E7B5881CC2AC0600A0062D /* AwesomeTesting.h */,
 				B3E7B5891CC2AC0600A0062D /* AwesomeTesting.m */,
-
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,9 +117,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-				B3E7B58A1CC2AC0600A0062D /* AwesomeTesting.m in Sources */,
-
+				BECD23AD274FA53E00FFB6DF /* MQTTClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +230,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AwesomeTesting;
 				SKIP_INSTALL = YES;
-
 			};
 			name = Debug;
 		};
@@ -251,7 +246,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AwesomeTesting;
 				SKIP_INSTALL = YES;
-
 			};
 			name = Release;
 		};
