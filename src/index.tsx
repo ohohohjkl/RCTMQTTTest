@@ -4,7 +4,7 @@ import {
   EmitterSubscription,
 } from 'react-native';
 import { IMqttClientOptions, MQTTEvent } from './types';
-const {AwesomeTesting} = NativeModules;
+const { AwesomeTesting } = NativeModules;
 
 interface EventHandler {
   [index: string]: any;
@@ -25,7 +25,7 @@ class MQTTClient {
   }
 
   dispatchEventFromNative = (data: any) => {
-    const {event, message} = data;
+    const { event, message } = data;
     if (!this.eventHandler[event]) return;
 
     this.eventHandler[event](message); //execute event
@@ -48,7 +48,7 @@ class MQTTClient {
     topic: string,
     data: object,
     qos: number = 0,
-    retained: Boolean = false,
+    retained: Boolean = false
   ) => AwesomeTesting.publish(this.clientRef, topic, data, qos, retained);
 
   reconnect = () => {};
@@ -67,19 +67,20 @@ class MQTTClientManager {
     this.emitter = new NativeEventEmitter(AwesomeTesting);
     this.eventHandler = this.emitter.addListener(
       'mqtt_events',
-      this.dispatchToClients,
+      this.dispatchToClients
     );
   }
 
   createClient = async (options: IMqttClientOptions) => {
     let clientRef = await AwesomeTesting.createClient(options);
+    console.log('clientReffffffffffff', clientRef);
     this.clients[clientRef] = new MQTTClient(options, clientRef);
     return this.clients[clientRef];
   };
 
   dispatchToClients = (data: object) => {
     let arrClient = Object.values(this.clients);
-    arrClient.forEach(client => client.dispatchEventFromNative(data));
+    arrClient.forEach((client) => client.dispatchEventFromNative(data));
   };
 
   removeClient = async (client: MQTTClient) => {
