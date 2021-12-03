@@ -58,10 +58,11 @@ public class MQTTOptions {
     if (protocolLevel == 3)
       connectOptions.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1);
 
-    connectOptions.setKeepAliveInterval(keepalive);
-    connectOptions.setMaxInflight(1000);
-    connectOptions.setConnectionTimeout(10);
-    connectOptions.setAutomaticReconnect(automaticReconnect);
+//    connectOptions.setKeepAliveInterval(keepalive);
+//    connectOptions.setMaxInflight(1000);
+//    connectOptions.setConnectionTimeout(10);
+//    connectOptions.setAutomaticReconnect(automaticReconnect);
+//    connectOptions.setCleanSession(false);
 
     return connectOptions;
   }

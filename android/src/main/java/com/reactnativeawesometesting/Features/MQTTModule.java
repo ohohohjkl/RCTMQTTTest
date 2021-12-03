@@ -34,38 +34,83 @@ public class MQTTModule extends ReactContextBaseJavaModule {
     try {
       String clientRef = UUID.randomUUID().toString();
       MQTTClient createdClient = new MQTTClient(clientRef, options, _RCTContext);
-      Log.d("CREATE Client ", clientRef );
-      _MQTTClients.put(clientRef,createdClient );
+//      createdClient.setCallback();
+      Log.d("CREATE Client ", clientRef);
+      _MQTTClients.put(clientRef, createdClient);
       promise.resolve(clientRef);
-    } catch(Exception e) {
+    } catch (Exception e) {
       promise.reject("Create Event Error", e);
     }
   }
 
   //implement connect
   @ReactMethod
-  public void connect(@NonNull  String clientRef) {
+  public void connect(@NonNull String clientRef) {
     try {
+      Log.d("CONNECT Client ", clientRef);
       MQTTClient MQTTClient = _MQTTClients.get(clientRef);
       MQTTClient.connect();
-    } catch(Exception e) {
+      Log.d("CONNECT Client ", "COMPLETE");
+    } catch (Exception e) {
+      Log.d("Create Event Error", e.getMessage());
     }
   }
+
   //implement disconnect
+  @ReactMethod
+  public void disconnect(@NonNull String clientRef) {
+    try {
+      MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+      MQTTClient.disconnect();
+    } catch (Exception e) {
+    }
+  }
+
   //implement subscribe
+  @ReactMethod
+  public void subscribe(@NonNull String clientRef, String topic, Integer qos) {
+    try {
+      MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+      MQTTClient.subscribe(topic, qos);
+    } catch (Exception e) {
+    }
+  }
+
   //implement unsubscribe
+  @ReactMethod
+  public void unsubscribe(@NonNull String clientRef, @NonNull String topic) {
+    try {
+      MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+      MQTTClient.unsubscribe(topic);
+    } catch (Exception e) {
+    }
+  }
+
   //implement publish
+  @ReactMethod
+  public void publish(@NonNull final String clientRef,
+                      @NonNull final String topic,
+                      @NonNull final String payload,
+                      final int qos,
+                      final boolean retain)
+  {
+    MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+    MQTTClient.publish(topic, payload, qos, retain);
+  }
 
   //implement isConnected
   @ReactMethod
-  public Object isConnected(String clientRef) {
+  public Boolean isConnected(String clientRef) {
     Log.d("MQTTModule ", clientRef + " Connected");
-    return _MQTTClients.get(clientRef);
-  }
-  //implement isSubscribed
-  @ReactMethod
-  public void isSubscribe(String clientRef) {
-    Log.d("CalendarModule", clientRef + " Subscribed");
+    MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+    return MQTTClient.isConnected();
   }
 
+  //implement isSubscribed
+  @ReactMethod
+  public Boolean isSubscribe(String clientRef, @NonNull String topic) {
+    Log.d("MQTTModule ", clientRef + " Connected");
+    MQTTClient MQTTClient = _MQTTClients.get(clientRef);
+    return MQTTClient.isSubbed(topic);
+  }
 }

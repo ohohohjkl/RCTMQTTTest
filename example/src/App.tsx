@@ -46,7 +46,7 @@ const App = () => {
   useEffect( () => {
     (async () => {
       MQTTClient = await MQTTClientManager.createClient({
-        host: 'tcp://test.mosquitto.org',
+        host: 'tcp://broker.hivemq.com',
         port: 1883,
       } as any);
       MQTTClient.on('connecting', handleSetStatus);
